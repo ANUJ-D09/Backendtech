@@ -46,6 +46,14 @@ app.delete('/datas/:id', (req, res) => {
     datas.splice(index, 1);
     res.status(204).send();
 });
+app.delete('/datas/:id', (req, res) => {
+    const index = datas.findIndex(t => t.id === parseInt(req.params.id));
+    if (index === -1) {
+        return res.status(404).send('Data not found');
+    }
+    datas.splice(index, 1);
+    res.status(204).send();
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
